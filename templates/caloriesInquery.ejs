@@ -1,0 +1,132 @@
+<!-- You implement -->
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" >
+    <title>Calories Inquiry</title>
+    <style>
+        html {
+    		font-family: Arial, Helvetica, sans-serif;
+    		font-size: 14px;
+		}
+
+		body {
+			background-color: white;
+		}
+
+		.page {
+			position: relative; 
+			margin:auto;
+			background-color: beige;
+			background-position: top left;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: 700px;
+			border-style: solid;
+			border-color: green;
+			border-width: 5px; 
+			height: 500px;
+			width: 500px;
+			text-align: center;
+		}
+
+		.page h1 {
+			display: table;
+			margin: 0.5rem;
+			background-color: rgba(0, 0, 0, .4);
+			color: azure;
+		}
+
+		.page .form-background {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-style: solid;
+            border-color: azure;
+            border-width: 5px;
+            position: absolute; 
+            width: 375px;
+            border-style: solid;
+            left: 15px;
+            top: 50px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+		a:link {
+			color: blue;	
+		}
+
+		a:visited {
+			color:blueviolet;
+		}
+
+		a:hover {
+			font-size: 12px;
+			color: blue;
+		}
+
+		a:active {
+			color: gray;
+		}
+
+        fieldset {
+            border-radius: 5px;
+        }
+
+        #foodText {
+            height: 300px;
+			width: 300px;
+        }
+
+        fieldset > legend {
+            color:  #A0522D;
+        }
+
+        textarea {
+            width:  100%;
+            height: 80%;
+        }
+
+        #buttons {
+            margin: 0;
+            text-align: center;
+            border-color: gray white grey white;
+            border-style: double double double double;
+            border-width: 2px 1px 2px 1px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <h1><u>Calories Inquiry</u></h1>
+        <div class="form-background">
+            <%- formAction %> 
+            <fieldset id="foodText">
+                <legend>
+                    <strong><em>What food do you want to inquire?</em></strong>
+                </legend>
+                
+                <strong>Enter Your Food Here (i.e. 5 ounces of beef steak and 10 ounces of milk): </strong>
+                <br>
+                <textarea rows="5" cols="80" id="food" name="food"></textarea>
+                <br>
+                
+                
+            </fieldset>
+            <br>
+            <input class="buttons" id="clear" type="reset" value="Clear">
+            <input class="buttons" id="submitInformation" type="submit" value="Submit">     
+            </form>
+            
+            <br>
+            <%- footer %> 
+        </div> 
+        
+    </div>
+</body>
+
+</html>

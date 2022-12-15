@@ -1,0 +1,107 @@
+<!-- You implement -->
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" >
+    <title>Calories Response</title>
+    <style>
+        html {
+    		font-family: Arial, Helvetica, sans-serif;
+    		font-size: 14px;
+		}
+
+		body {
+			background-color: white;
+		}
+
+		.page {
+			position: relative; 
+			margin:auto;
+			background-color: beige;
+			background-position: top left;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: 700px;
+			border-style: solid;
+			border-color: green;
+			border-width: 5px; 
+			height: 500px;
+			width: 500px;
+			text-align: center;
+			overflow:auto;
+		}
+
+		.page h1 {
+			display: table;
+			margin: 0.5rem;
+			background-color: rgba(0, 0, 0, .4);
+			color: azure;
+		}
+
+		.page .form-background {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-style: solid;
+            border-color: azure;
+            border-width: 5px;
+            position: absolute; 
+            width: 375px;
+            border-style: solid;
+            left: 15px;
+            top: 50px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+		a:link {
+			color: blue;	
+		}
+
+		a:visited {
+			color:blueviolet;
+		}
+
+		a:hover {
+			font-size: 12px;
+			color: blue;
+		}
+
+		a:active {
+			color: gray;
+		}
+
+        table {
+            border: 0.1rem solid black;
+        }
+
+        th {
+            color: brown;
+            border: 0.1rem solid black;
+            background-color: antiquewhite;
+            text-align: center;
+        }
+
+        td{
+            border: 0.1rem solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <h1><u>How many calories?</u></h1>
+        <div class="form-background">
+            <%- table %> 
+            
+            <br>
+
+            <%- footer %> 
+        </div>   
+        
+    </div>
+</body>
+
+</html>

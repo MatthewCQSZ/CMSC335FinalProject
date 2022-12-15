@@ -1,0 +1,21 @@
+{
+  "name": "cmsc335finalproject",
+  "version": "1.0.0",
+  "description": "Final Project",
+  "main": "server.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthewCQSZ/CMSC335FinalProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatthewCQSZ/CMSC335FinalProject/issues"
+  },
+  "homepage": "https://github.com/MatthewCQSZ/CMSC335FinalProject#readme"
+}

@@ -1,0 +1,94 @@
+/* You implement */
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+body {
+    background-color: white;
+}
+
+.page {
+    position: relative;
+    background-color: beige;
+	background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 700px;
+    border-style: solid;
+    border-color: green;
+    border-width: 5px; 
+    height: 500px;
+    width: 500px;
+}
+
+.page h1 {
+    display: table;
+    margin: 0.5rem;
+    background-color: rgba(0, 0, 0, .4);
+    color: azure;
+}
+
+.page #menu {
+    background-color: rgba(211,211,211, 0.8);
+    position: absolute; 
+    width: 200px;
+    border-style: solid;
+    left: 150px;
+    top: 175px;
+    text-align: center;
+}
+
+.page .form-background {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-style: solid;
+    border-color: azure;
+    border-width: 5px;
+    position: absolute; 
+    width: 375px;
+    border-style: solid;
+    left: 15px;
+    top: 50px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+a:link {
+	color: brown;	
+}
+
+a:visited {
+	color:beige;
+}
+
+a:hover {
+    font-size: 12px;
+	color: azure;
+}
+
+a:active {
+	color: gray;
+}
+
+
+#submitInquiry {
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    box-shadow: 0 0 0 1px black, inset 0 0 0 1px grey;
+}
+
+#clear {
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    text-align: center;
+    box-shadow: 0 0 0 1px black, inset 0 0 0 1px grey;
+    margin-left: 8px;
+}
