@@ -14,11 +14,8 @@ const uri = `mongodb+srv://${userName}:${password}@cluster0.50bxxk7.mongodb.net/
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 const api_url = 'https://api.calorieninjas.com/v1/nutrition?query=';
 
-if (process.argv.length != 3) {
-    process.stdout.write(`Usage summerCampServer.js portNumber`);
-    process.exit(1);
-};
-const portNumber = Number(process.argv[2]);
+
+const portNumber = process.env.PORT || 5000;;
 app.listen(portNumber);
 const footer = `<a href="http://localhost:${portNumber}/">HOME</a>`;
 
