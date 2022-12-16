@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" >
-    <title>Calories Inquiry</title>
+    <title>Delete User</title>
     <style>
         html {
     		font-family: Arial, Helvetica, sans-serif;
@@ -31,6 +31,7 @@
 			height: 500px;
 			width: 500px;
 			text-align: center;
+			overflow:auto;
 		}
 
 		.page h1 {
@@ -45,7 +46,7 @@
             border-style: solid;
             border-color: azure;
             border-width: 5px;
-            position: absolute; 
+            position: relative; 
             width: 375px;
             border-style: solid;
             left: 15px;
@@ -71,30 +72,19 @@
 			color: gray;
 		}
 
-        fieldset {
-            border-radius: 5px;
+        table {
+            border: 0.1rem solid black;
         }
 
-        #foodText {
-            height: 300px;
-			width: 300px;
-        }
-
-        fieldset > legend {
-            color:  #A0522D;
-        }
-
-        textarea {
-            width:  100%;
-            height: 80%;
-        }
-
-        #buttons {
-            margin: 0;
+        th {
+            color: brown;
+            border: 0.1rem solid black;
+            background-color: antiquewhite;
             text-align: center;
-            border-color: gray white grey white;
-            border-style: double double double double;
-            border-width: 2px 1px 2px 1px;
+        }
+
+        td{
+            border: 0.1rem solid black;
         }
 
     </style>
@@ -102,29 +92,14 @@
 
 <body>
     <div class="page">
-        <h1><u>Calories Inquiry</u></h1>
+        <%- header %> 
         <div class="form-background">
-            <%- formAction %> 
-            <fieldset id="foodText">
-                <legend>
-                    <strong><em>What food do you want to inquire?</em></strong>
-                </legend>
-                
-                <strong>Enter Your Food Here: </strong>
-                <br>
-                <textarea rows="5" cols="80" id="food" name="food" placeholder="10oz onion and a tomato"></textarea>
-                <br>
-                
-                
-            </fieldset>
-            <br>
-            <input class="buttons" id="clear" type="reset" value="Clear">
-            <input class="buttons" id="submitInformation" type="submit" value="Submit">     
-            </form>
+            <%- count %> 
             
             <br>
+
             <%- footer %> 
-        </div> 
+        </div>   
         
     </div>
 </body>

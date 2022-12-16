@@ -3,15 +3,16 @@ const express = require("express");
 const bodyParser = require("body-parser"); 
 const app = express(); 
 
-require("dotenv").config({ path: path.resolve(__dirname, 'credentialsDontPost/.env') }) 
+require("dotenv").config({ path: path.resolve(__dirname, 'credentialsDontPost/.env') }) ;
 
 const userName = process.env.MONGO_DB_USERNAME;
 const password = process.env.MONGO_DB_PASSWORD;
+const apiKey = process.env.API_KEY;
 const databaseAndCollection = {db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION};
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const { table } = require('console');
 const uri = `mongodb+srv://${userName}:${password}@cluster0.50bxxk7.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const api_url = 'https://api.calorieninjas.com/v1/nutrition?query=';
 
 if (process.argv.length != 3) {
     process.stdout.write(`Usage summerCampServer.js portNumber`);
@@ -37,11 +38,24 @@ app.get("/caloriesInquery", (request, response) => {
     response.render("caloriesInquery", form);
 }); 
 
-app.post("/processCaloriesInquery", (request, response) => { 
+app.post("/processCaloriesInquery", async (request, response) => { 
     let { food } = request.body;
     
     // API here
-    let table = "<table border=\"1\"><tr><th>Name</th><th>Calories</th></tr>";
+    let table = `<div><em>In ${food}</em></div><br>`;
+    table += "<table border=\"1\"><tr><th>Name</th><th>Calories</th></tr>";
+
+    let res = await fetch(api_url+food, {
+		method: 'GET',
+		headers: {
+			'X-Api-Key': apiKey,
+		},
+	});
+
+    let {items} = await res.json();
+
+    items.forEach((item) => {table += `<tr><td>${item.name}</td><td>${item.calories}</td></tr>`;});
+
 
     table += "</table>";
     info = {
@@ -67,11 +81,32 @@ app.get("/enterFood", (request, response) => {
     response.render("enterFood", form);
 }); 
 
-app.post("/processEnterFood", (request, response) => { 
+app.post("/processEnterFood", async (request, response) => { 
     let { userName, food } = request.body;
     
     // Add food entry to MongoDB here
-    // Maybe get food calories before upload to DB? Should be easy
+    let res = await fetch(api_url+food, {
+		method: 'GET',
+		headers: {
+			'X-Api-Key': apiKey,
+		},
+	})
+
+    let {items} = await res.json();
+
+    let totalCalories = items.reduce((result, elem) => {
+        return result + elem.calories;
+     }, 0);
+
+    let mdb = await client.connect();
+    await mdb.db(databaseAndCollection.db)
+    .collection(databaseAndCollection.collection)
+    .insertOne({
+        userName: userName,
+        food: food,
+        totalCalories: Number(totalCalories),
+    });
+    
 
     let info = {
         header: `<h1><u>${userName}, Your Food is Saved Successfully!</u></h1>`,
@@ -89,11 +124,20 @@ app.get("/lookUpFood", (request, response) => {
     response.render("lookUpFood", form);
 }); 
 
-app.post("/processLookUpFood", (request, response) => { 
-    let { userName} = request.body;
+app.post("/processLookUpFood", async (request, response) => { 
+    let { userName } = request.body;
     
     // Retrieve food entry from MongoDB here
     let table = "<table border=\"1\"><tr><th>Name</th><th>Calories</th></tr>";
+
+    let mdb = await client.connect();
+    let items = await mdb.db(databaseAndCollection.db)
+    .collection(databaseAndCollection.collection)
+    .find({userName: {$eq: userName}});
+
+    items = await items.toArray();
+
+    items.forEach((item) => {table += `<tr><td>${item.food}</td><td>${item.totalCalories}</td></tr>`;});
 
     table += "</table>";
 
@@ -106,7 +150,32 @@ app.post("/processLookUpFood", (request, response) => {
     response.render("processLookUpFood", info);
 });
 
+app.get("/deleteUser", (request, response) => {
+    let form = {
+        formAction: `<form action="http://localhost:${portNumber}/processDeleteUser" method="post">`,
+        footer: footer,
+    };
+    response.render("deleteUser", form);
+}); 
 
+app.post("/processDeleteUser", async (request, response) => { 
+    let { userName } = request.body;
+    
+    // Remove food entry from MongoDB here
+
+    let mdb = await client.connect();
+    let result = await mdb.db(databaseAndCollection.db)
+    .collection(databaseAndCollection.collection)
+    .deleteMany({userName: {$eq: userName}});
+
+    let info = {
+        header: `<h1><u>${userName}, Your Saved Food Entries are Deleted!</u></h1>`,
+        count: `<em>${result.deletedCount} entries deleted</em>`,
+        footer: footer,
+    };
+    
+    response.render("processDeleteUser", info);
+});
 
 
 console.log(`Web server started and running at: http://localhost:${portNumber}`);
