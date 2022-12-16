@@ -15,7 +15,7 @@ You can look up the amount of calories in the description of any food you provid
 
 ## Demonstration Video
 
-TBD
+https://youtu.be/hW2BK5YlLIM
 
 ## Live Site
 
