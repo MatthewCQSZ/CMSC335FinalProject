@@ -17,7 +17,7 @@ const api_url = 'https://api.calorieninjas.com/v1/nutrition?query=';
 
 const portNumber = process.env.PORT || 5000;;
 app.listen(portNumber);
-const footer = `<a href="http://localhost:${portNumber}/">HOME</a>`;
+const footer = `<a href="/">HOME</a>`;
 
 app.set("views", path.resolve(__dirname, "templates"));
 app.set("view engine", "ejs");
@@ -29,7 +29,7 @@ app.get("/", (request, response) => {
 
 app.get("/caloriesInquery", (request, response) => {
     let form = {
-        formAction: `<form action="http://localhost:${portNumber}/processCaloriesInquery" method="post">`,
+        formAction: `<form action="/processCaloriesInquery" method="post">`,
         footer: footer,
     };
     response.render("caloriesInquery", form);
@@ -72,7 +72,7 @@ app.get("/saveFood", (request, response) => {
 
 app.get("/enterFood", (request, response) => {
     let form = {
-        formAction: `<form action="http://localhost:${portNumber}/processEnterFood" method="post">`,
+        formAction: `<form action="/processEnterFood" method="post">`,
         footer: footer,
     };
     response.render("enterFood", form);
@@ -115,7 +115,7 @@ app.post("/processEnterFood", async (request, response) => {
 
 app.get("/lookUpFood", (request, response) => {
     let form = {
-        formAction: `<form action="http://localhost:${portNumber}/processLookUpFood" method="post">`,
+        formAction: `<form action="/processLookUpFood" method="post">`,
         footer: footer,
     };
     response.render("lookUpFood", form);
@@ -149,7 +149,7 @@ app.post("/processLookUpFood", async (request, response) => {
 
 app.get("/deleteUser", (request, response) => {
     let form = {
-        formAction: `<form action="http://localhost:${portNumber}/processDeleteUser" method="post">`,
+        formAction: `<form action="/processDeleteUser" method="post">`,
         footer: footer,
     };
     response.render("deleteUser", form);
