@@ -2,10 +2,17 @@
 
 
 Ali Taheri (ataheri)
+
 Chenqi Matthew Zhu (chqzhu)
+
+## Description
 
 You can look up the amount of calories in the description of any food you provide and save them for later references.
 
-API Used: [calorieninjas.com](https://calorieninjas.com/)
+## API
 
-Demonstration Video: TBD
+[calorieninjas.com](https://calorieninjas.com/)
+
+## Demonstration Video
+
+TBD
